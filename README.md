@@ -1,4 +1,4 @@
-# samplevue
+# workout-vue
 
 ## Project setup
 ```
