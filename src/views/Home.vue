@@ -1,18 +1,34 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <v-container>
+    <v-app id="inspire">
+      <v-row justify="center">
+        <v-date-picker
+          width='50%'
+          v-model="value"
+          locale="jp-ja"
+          reactive="reactive"
+          :day-format="date => new Date(date).getDate()">
+        </v-date-picker>
+       <router-link to="/form">メニューを追加</router-link>
+       <!-- <router-link to="{name: 'Form'}">ff</router-link> -->
+      
+      </v-row>
+    </v-app>
+  </v-container> 
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
+  data(){
+    return{
+      picker: new Date().toISOString().substr(0, 10),
+      value:'',
+    }
+  },
 }
 </script>
