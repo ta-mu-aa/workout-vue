@@ -4,7 +4,7 @@
     <v-app id="inspire">
       <v-row justify="center">
         <v-date-picker
-          width='50%'
+          width="400"
           v-model="value"
           locale="jp-ja"
           reactive="reactive"

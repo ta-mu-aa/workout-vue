@@ -4,7 +4,7 @@
       <v-row>
         <v-col
           cols="6"
-          md="6"
+          md="3"
         >
           <v-text-field
             v-model="value"
@@ -15,7 +15,7 @@
 
         <v-col
           cols="6"
-          md="6"
+          md="3"
         >
           <v-text-field
             label="weight"
@@ -25,7 +25,7 @@
 
         <v-col
           cols="6"
-          md="6"
+          md="3"
         >
           <v-text-field
             label="rep"
@@ -34,7 +34,7 @@
         </v-col>
         <v-col
           cols="6"
-          md="6"
+          md="3"
         >
           <v-text-field
             label="sets"
