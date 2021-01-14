@@ -24,13 +24,19 @@ export default new Vuex.Store({
     toggleSideMenu(state){
       state.drawer = !state.drawer
     },
-    addTrainingMenu(state,menu){
+    addTrainingMenu(state,{id,menu}){
+      menu.id = id
       state.trainingMenu.push(menu)
     },
   },
   actions: {
     setLoginUser({commit}, user){
       commit('setLoginUser',user)
+    },
+    fetchTraining({getters, commit}){
+      firebase.firestore().collection(`users/${getters.uid}/training`).get().then(snapshot => {
+        snapshot.forEach(doc => commit('addTrainingMenu', {id: doc.id, menu:doc.data()}))
+      })
     },
     login () {
       const google_auth_provider = new firebase.auth.GoogleAuthProvider()
@@ -46,8 +52,10 @@ export default new Vuex.Store({
       commit('toggleSideMenu')
     },
     addTrainingMenu({getters,commit}, menu){
-      if(getters.uid) firebase.firestore().collection(`users/${getters.uid}/training`).add(menu)
-      commit('addTrainingMenu', menu)
+      if(getters.uid){ firebase.firestore().collection(`users/${getters.uid}/training`).add(menu).then(doc => {
+        commit('addTrainingMenu', {id:doc.id,menu})
+      })
+      }
     }    
   },
   getters:{
