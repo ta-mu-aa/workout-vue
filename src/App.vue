@@ -16,7 +16,10 @@
     <HelloWorld/>
 
     <v-main>
-      <router-view/>
+      <v-container d-md-flex justify-center >
+        <router-view/>
+        <Record/>
+      </v-container>
     </v-main>
   </v-app>
 </template>
@@ -24,11 +27,13 @@
 <script>
 import firebase from 'firebase'
 import HelloWorld from './components/HelloWorld';
+import Record from './components/Record'
 import { mapActions } from 'vuex'
 export default {
   name: 'App',
   components: {
     HelloWorld,
+    Record
   },
   created(){
     firebase.auth().onAuthStateChanged(user =>{
@@ -47,6 +52,6 @@ export default {
   },
   methods:{
     ...mapActions(['toggleSideMenu','setLoginUser','logout','deleteLoginUser'])
-  }
+  },
 };
 </script>

@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from "firebase"
-import "firebase/app"
-import  "firebase/auth"
+
+
 
 
 
@@ -11,7 +11,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     drawer:false,
-    login_user:null
+    login_user:null,
+    trainingMenu:[],
   },
   mutations: {
     setLoginUser(state,user){
@@ -23,7 +24,9 @@ export default new Vuex.Store({
     toggleSideMenu(state){
       state.drawer = !state.drawer
     },
-
+    addTrainingMenu(state,menu){
+      state.trainingMenu.push(menu)
+    },
   },
   actions: {
     setLoginUser({commit}, user){
@@ -41,10 +44,15 @@ export default new Vuex.Store({
     },
     toggleSideMenu({commit}){
       commit('toggleSideMenu')
+    },
+    addTrainingMenu({getters,commit}, menu){
+      if(getters.uid) firebase.firestore().collection(`users/${getters.uid}/training`).add(menu)
+      commit('addTrainingMenu', menu)
     }    
   },
   getters:{
     userName:state => state.login_user ? state.login_user.displayName:'',
-    photoURL:state => state.login_user ? state.login_user.photoURL:''
+    photoURL:state => state.login_user ? state.login_user.photoURL:'',
+    uid: state => state.login_user ? state.login_user.uid : null
   }
 })

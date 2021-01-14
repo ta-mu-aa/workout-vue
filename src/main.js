@@ -4,13 +4,11 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import firebase from 'firebase'
-import 'firebase/app'
+
+
 
 
 Vue.config.productionTip = false
-
-
-
 
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -29,8 +27,6 @@ Vue.config.productionTip = false
     firebase.analytics();
   }
   
-
-
 new Vue({
   router,
   store,

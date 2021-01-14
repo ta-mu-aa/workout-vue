@@ -28,17 +28,20 @@
 
 <script>
 import {mapGetters} from 'vuex'
+// import {mapActions} from 'vuex'
   export default {
     data () {
       return {
         items: [
-          { title: 'Home', icon: 'dashboard' },
-          { title: 'About', icon: 'question_answer' },
+          { title: 'トレーニングメモ', icon: 'mdi-menu' },
+          { title: 'ログアウト', icon: 'mdi-menu'}
+
         ],
       }
       },
     computed:{
-      ...mapGetters(['userName','photoURL'])
+      ...mapGetters(['userName','photoURL']),
+      // ...mapActions(['logout'])
     }
   }
 </script>
