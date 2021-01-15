@@ -14,11 +14,11 @@
       </v-toolbar-items>
     </v-app-bar>
     <HelloWorld/>
+      
 
     <v-main>
       <v-container d-md-flex justify-center >
         <router-view/>
-        <Record/>
       </v-container>
     </v-main>
   </v-app>
@@ -27,13 +27,11 @@
 <script>
 import firebase from 'firebase'
 import HelloWorld from './components/HelloWorld';
-import Record from './components/Record'
 import { mapActions } from 'vuex'
 export default {
   name: 'App',
   components: {
     HelloWorld,
-    Record
   },
   created(){
     firebase.auth().onAuthStateChanged(user =>{

@@ -13,15 +13,19 @@
        <router-link :to="{name: 'Form'}">メニューを追加</router-link>
       </v-row>
     </v-app>
-  </v-container> 
+  </v-container>
+  <Record/> 
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
-
+import Record from '@/components/Record'
 export default {
+  components: {
+    Record
+  },
   data(){
     return{
       picker: new Date().toISOString().substr(0, 10),
