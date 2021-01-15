@@ -13,7 +13,7 @@ const routes = [
     component: Home
   },
   {
-    path:'/form',
+    path:'/:training_id?/edit',
     name:'Form',
     component: Form
   },
@@ -22,11 +22,6 @@ const routes = [
     name:'Login',
     component:Login
   },
-  // {
-  //   path:'/record',
-  //   name:'Record',
-  //   component:Record
-  // },
 ]
 
 const router = new VueRouter({

@@ -55,6 +55,16 @@
 import {mapActions} from 'vuex'
   export default {
     name: 'Form',
+    created(){
+      if(!this.$route.params.training_id) return
+
+      const training = this.$store.getters.getTrainingId(this.$route.params.training_id)
+      if(training){
+        this.menu = training
+      }else{
+        alert('値がありません')
+      }
+    },
     data(){
       return{
         menu:{}
