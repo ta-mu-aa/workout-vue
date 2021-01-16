@@ -62,7 +62,7 @@ import {mapActions} from 'vuex'
       if(training){
         this.menu = training
       }else{
-        alert('値がありません')
+        this.$router.push({name: ('Home')})
       }
     },
     data(){
@@ -72,11 +72,16 @@ import {mapActions} from 'vuex'
     },
     methods:{
       submit(){
+        if(this.$route.params.training_id){
+          this.updateTraining({id: this.$route.params.training_id, menu: this.menu})
+        }else{
+          this.addTrainingMenu(this.menu)
+        }
         this.addTrainingMenu(this.menu)
         this.$router.push({ name: 'Home'})
         this.training = {}
       },
-      ...mapActions(['addTrainingMenu'])
+      ...mapActions(['addTrainingMenu','updateTraining'])
     }
   }
     

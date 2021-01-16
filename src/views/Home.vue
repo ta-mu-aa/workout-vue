@@ -10,7 +10,7 @@
           reactive="reactive"
           :day-format="date => new Date(date).getDate()">
         </v-date-picker>
-       <router-link :to="{name: 'Form'}">メニューを追加</router-link>
+       <router-link :to="{name:'Form' }">メニューを追加</router-link>
       </v-row>
     </v-app>
   </v-container>

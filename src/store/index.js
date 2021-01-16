@@ -28,6 +28,16 @@ export default new Vuex.Store({
       menu.id = id
       state.trainingMenu.push(menu)
     },
+    updateTraining(state, {id , menu}){
+      const index = state.trainingMenu.findIndex(menu => menu.id === id)
+
+      state.trainingMenu[index] = menu
+    },
+    deleteTraining(state, {id }){
+      const index = state.trainingMenu.findIndex(menu => menu.id === id)
+
+      state.trainingMenu.splice(index,1)
+    },
   },
   actions: {
     setLoginUser({commit}, user){
@@ -56,7 +66,20 @@ export default new Vuex.Store({
         commit('addTrainingMenu', {id:doc.id,menu})
       })
       }
-    }    
+    },updateTraining({getters,commit},{id,menu}){
+      if(getters.uid){
+        firebase.firestore().collection(`users/${getters.uid}/training`).doc(id).update(menu).then(() => {
+          commit('updateTraining',{id, menu})
+        })
+      }
+    },
+    deleteTraining({getters,commit},{id}){
+      if(getters.uid){
+        firebase.firestore().collection(`users/${getters.uid}/training`).doc(id).delete().then(() => {
+          commit('deleteTraining',{id})
+        })
+      }
+    },
   },
   getters:{
     userName:state => state.login_user ? state.login_user.displayName:'',

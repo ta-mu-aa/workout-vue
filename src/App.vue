@@ -13,7 +13,7 @@
         <v-btn text v-on:click="logout">ログアウト</v-btn>
       </v-toolbar-items>
     </v-app-bar>
-    <HelloWorld/>
+        <HelloWorld/>
       
 
     <v-main>

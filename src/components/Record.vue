@@ -8,6 +8,7 @@
         <router-link :to="{ name: 'Form', params: { training_id: item.id }}">
           <v-icon small class="mr-2">fas fa-edit</v-icon>
         </router-link>
+        <v-icon small class="mr-2" @click="deleteConfirm(item.id)">mdi-delete</v-icon>
       </span>
     </template>
   </v-data-table>
@@ -15,6 +16,7 @@
 
 
 <script> 
+import {mapActions} from 'vuex'
 export default {
   created(){
     this.training = this.$store.state.trainingMenu
@@ -37,6 +39,14 @@ export default {
       training: [],
     }
   },
+  methods:{
+    deleteConfirm(id){
+      if(confirm('削除してもよろしいですか？')){
+        this.deleteTraining(id)
+      }
+    },
+    ...mapActions(['deleteTraining'])
+  }
 }
 </script>
 <style scoped lang="scss">
