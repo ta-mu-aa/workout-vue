@@ -1,17 +1,20 @@
 <template>
-  <v-data-table
-      :headers="headers"
-      :items="training" 
-    >
-    <template v-slot:[`item.action`]="{ item }">
-      <span>
-        <router-link :to="{ name: 'Form', params: { training_id: item.id }}">
-          <v-icon small class="mr-2">fas fa-edit</v-icon>
-        </router-link>
-        <v-icon small class="mr-2" @click="deleteConfirm(item.id)">mdi-delete</v-icon>
-      </span>
-    </template>
-  </v-data-table>
+  <v-container>
+    <v-data-table
+        :headers="headers"
+        :items="training" 
+      >
+      <template v-slot:[`item.action`]="{ item }">
+        <span>
+          <router-link :to="{ name: 'Form', params: { training_id: item.id }}">
+            <v-icon small class="mr-2">fas fa-edit</v-icon>
+          </router-link>
+          <v-icon small class="mr-2" @click="deleteConfirm(item.id)">mdi-delete</v-icon>
+        </span>
+      </template>
+    </v-data-table>
+    <router-link :to="{name:'Form' }">メニューを追加</router-link>
+  </v-container>
 </template>
 
 

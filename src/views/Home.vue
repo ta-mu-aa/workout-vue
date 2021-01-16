@@ -10,22 +10,22 @@
           reactive="reactive"
           :day-format="date => new Date(date).getDate()">
         </v-date-picker>
-       <router-link :to="{name:'Form' }">メニューを追加</router-link>
+       <router-link :to="{name:'Record' }">メニューを追加</router-link>
       </v-row>
     </v-app>
   </v-container>
-  <Record/> 
+  <!-- <Record/>  -->
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 
-import Record from '@/components/Record'
+// import Record from '@/components/Record'
 export default {
-  components: {
-    Record
-  },
+  // components: {
+  //   Record
+  // },
   data(){
     return{
       picker: new Date().toISOString().substr(0, 10),

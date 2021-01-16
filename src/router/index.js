@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Form from '../views/Form.vue'
 import Login from '../views/Login.vue'
-// import Record from '../views/Record.vue'
+import Record from '../views/Record.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,6 +22,11 @@ const routes = [
     name:'Login',
     component:Login
   },
+  {
+    path:'/record',
+    name:'Record',
+    component:Record
+  }
 ]
 
 const router = new VueRouter({

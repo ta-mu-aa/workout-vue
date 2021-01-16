@@ -45,7 +45,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-btn small color="info" :to="{name: 'Home'}">cancel</v-btn>
+      <v-btn small color="info" :to="{name: 'Record'}">cancel</v-btn>
       <v-btn color="info" class="ml-2" v-on:click.stop="submit">保存</v-btn>
     </v-container>
   </v-form>
@@ -62,7 +62,7 @@ import {mapActions} from 'vuex'
       if(training){
         this.menu = training
       }else{
-        this.$router.push({name: ('Home')})
+        this.$router.push({name: ('Record')})
       }
     },
     data(){
@@ -78,7 +78,7 @@ import {mapActions} from 'vuex'
           this.addTrainingMenu(this.menu)
         }
         this.addTrainingMenu(this.menu)
-        this.$router.push({ name: 'Home'})
+        this.$router.push({ name: 'Record'})
         this.training = {}
       },
       ...mapActions(['addTrainingMenu','updateTraining'])

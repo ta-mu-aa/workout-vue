@@ -13,7 +13,7 @@
 
         <v-divider></v-divider>
 
-        <v-list-item v-for="(item, index) in items" :key="index">
+        <v-list-item v-for="(item, index1) in items" :key="index1" :to="item.link" >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -33,8 +33,8 @@ import {mapGetters} from 'vuex'
     data () {
       return {
         items: [
-          { title: 'トレーニングメモ', icon: 'mdi-menu' },
-          { title: 'ログアウト', icon: 'mdi-menu'}
+          { title: 'ホーム', icon: 'mdi-menu', link:{name:'Home'} },
+          { title: 'ログアウト', icon: 'mdi-menu'  }
 
         ],
       }
