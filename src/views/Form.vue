@@ -77,7 +77,6 @@ import {mapActions} from 'vuex'
         }else{
           this.addTrainingMenu(this.menu)
         }
-        this.addTrainingMenu(this.menu)
         this.$router.push({ name: 'Record'})
         this.training = {}
       },

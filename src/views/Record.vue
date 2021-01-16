@@ -1,19 +1,23 @@
 <template>
   <v-container>
-    <v-data-table
-        :headers="headers"
-        :items="training" 
-      >
-      <template v-slot:[`item.action`]="{ item }">
-        <span>
-          <router-link :to="{ name: 'Form', params: { training_id: item.id }}">
-            <v-icon small class="mr-2">fas fa-edit</v-icon>
-          </router-link>
-          <v-icon small class="mr-2" @click="deleteConfirm(item.id)">mdi-delete</v-icon>
-        </span>
-      </template>
-    </v-data-table>
-    <router-link :to="{name:'Form' }">メニューを追加</router-link>
+    <v-layout row wrap>
+      <v-flex xs12 mt-3 justify-center>
+        <v-data-table
+            :headers="headers"
+            :items="training" 
+          >
+          <template v-slot:[`item.action`]="{ item }">
+            <span>
+              <router-link :to="{ name: 'Form', params:{ training_id:item.id }}">
+                <v-icon small class="mr-2">fas fa-edit</v-icon>
+              </router-link>
+              <v-icon small class="mr-2" @click="deleteConfirm(item.id)">mdi-delete</v-icon>
+            </span>
+          </template>
+        </v-data-table>
+        <router-link :to="{name:'Form' }">メニューを追加</router-link>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -45,7 +49,8 @@ export default {
   methods:{
     deleteConfirm(id){
       if(confirm('削除してもよろしいですか？')){
-        this.deleteTraining(id)
+        this.deleteTraining({id})
+        
       }
     },
     ...mapActions(['deleteTraining'])

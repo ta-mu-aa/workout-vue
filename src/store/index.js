@@ -63,7 +63,7 @@ export default new Vuex.Store({
     },
     addTrainingMenu({getters,commit}, menu){
       if(getters.uid){ firebase.firestore().collection(`users/${getters.uid}/training`).add(menu).then(doc => {
-        commit('addTrainingMenu', {id:doc.id,menu})
+        commit('addTrainingMenu', {id: doc.id, menu })
       })
       }
     },updateTraining({getters,commit},{id,menu}){
