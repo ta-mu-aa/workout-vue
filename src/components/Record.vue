@@ -1,10 +1,12 @@
 <template>
-  <v-container>
+  <v-container>      
     <v-layout row wrap>
       <v-flex xs12 mt-3 justify-center>
+        <span>{{$store.state.trainingDay}}</span>
         <v-data-table
             :headers="headers"
             :items="training" 
+            hide-default-footer
           >
           <template v-slot:[`item.action`]="{ item }">
             <span>
@@ -15,7 +17,6 @@
             </span>
           </template>
         </v-data-table>
-        <router-link :to="{name:'Form' }">メニューを追加</router-link>
       </v-flex>
     </v-layout>
   </v-container>

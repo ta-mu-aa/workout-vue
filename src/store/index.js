@@ -4,8 +4,6 @@ import firebase from "firebase"
 
 
 
-
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -13,7 +11,9 @@ export default new Vuex.Store({
     drawer:false,
     login_user:null,
     trainingMenu:[],
+    trainingDay:null,
   },
+
   mutations: {
     setLoginUser(state,user){
       state.login_user = user
@@ -38,7 +38,11 @@ export default new Vuex.Store({
 
       state.trainingMenu.splice(index,1)
     },
+    setDay(state,picker){
+      state.trainingDay = picker
+    }
   },
+
   actions: {
     setLoginUser({commit}, user){
       commit('setLoginUser',user)
@@ -65,8 +69,9 @@ export default new Vuex.Store({
       if(getters.uid){ firebase.firestore().collection(`users/${getters.uid}/training`).add(menu).then(doc => {
         commit('addTrainingMenu', {id: doc.id, menu })
       })
-      }
-    },updateTraining({getters,commit},{id,menu}){
+    }
+    },
+    updateTraining({getters,commit},{id,menu}){
       if(getters.uid){
         firebase.firestore().collection(`users/${getters.uid}/training`).doc(id).update(menu).then(() => {
           commit('updateTraining',{id, menu})
@@ -80,7 +85,12 @@ export default new Vuex.Store({
         })
       }
     },
+    setDay({commit},picker){
+      // if(getters.uid){ firebase.firestore().collection(`users/${getters.uid}/training`).add({date:picker})}
+      commit('setDay',picker)
+    },
   },
+
   getters:{
     userName:state => state.login_user ? state.login_user.displayName:'',
     photoURL:state => state.login_user ? state.login_user.photoURL:'',
