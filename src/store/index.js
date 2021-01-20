@@ -26,29 +26,30 @@ export default new Vuex.Store({
     },
     addTrainingMenu(state,{id,menu}){
       menu.id = id
-      state.trainingMenu.push(menu)
+
+      state.trainingMenu.push(menu)    
     },
     updateTraining(state, {id , menu}){
       const index = state.trainingMenu.findIndex(menu => menu.id === id)
 
       state.trainingMenu[index] = menu
     },
-    deleteTraining(state, {id }){
+    deleteTraining(state, {id}){
       const index = state.trainingMenu.findIndex(menu => menu.id === id)
 
       state.trainingMenu.splice(index,1)
     },
     setDay(state,picker){
       state.trainingDay = picker
-    }
+    },
   },
 
   actions: {
     setLoginUser({commit}, user){
       commit('setLoginUser',user)
     },
-    fetchTraining({getters, commit}){
-      firebase.firestore().collection(`users/${getters.uid}/training`).get().then(snapshot => {
+    fetchTraining({getters, commit},trainingDay){
+      firebase.firestore().collection(`users/${getters.uid}/training`).where('date','==',trainingDay ).get().then(snapshot => {
         snapshot.forEach(doc => commit('addTrainingMenu', {id: doc.id, menu:doc.data()}))
       })
     },
@@ -85,9 +86,8 @@ export default new Vuex.Store({
         })
       }
     },
-    setDay({commit},picker){
-      // if(getters.uid){ firebase.firestore().collection(`users/${getters.uid}/training`).add({date:picker})}
-      commit('setDay',picker)
+    setDay({commit},TrainingDay){
+      commit('setDay',TrainingDay)
     },
   },
 
@@ -95,6 +95,7 @@ export default new Vuex.Store({
     userName:state => state.login_user ? state.login_user.displayName:'',
     photoURL:state => state.login_user ? state.login_user.photoURL:'',
     uid: state => state.login_user ? state.login_user.uid : null,
-    getTrainingId: state => id => state.trainingMenu.find(menu => menu.id ===id)
+    getTrainingId: state => id => state.trainingMenu.find(menu => menu.id === id),
+    // getTrainingDay: state  => state.trainingMenu.filter(menu => menu.date === state.trainingDay)
   }
 })

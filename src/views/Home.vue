@@ -9,7 +9,8 @@
               v-model="picker"
               locale="jp-ja"
               reactive="reactive"
-              :day-format="date => new Date(date).getDate()">
+              :day-format="date => new Date(date).getDate()"
+              v-on:input="addmenu()">
             </v-date-picker>
           </v-row>
         </v-app>
@@ -35,8 +36,18 @@ export default {
   methods:{
     addmenu(){
       this.setDay(this.picker)
+      this.fetchTraining(this.picker)
     },
-    ...mapActions(['setDay']),
+    ...mapActions(['setDay','fetchTraining']),
   },
 }
 </script>
+
+<style>
+  .v-date-picker-table.v-date-picker-table--date > table > tbody tr td:nth-child(7) .v-btn__content {
+    color:blue
+}
+  .v-date-picker-table.v-date-picker-table--date > table > tbody tr td:nth-child(1) .v-btn__content {
+    color:red
+}
+</style>

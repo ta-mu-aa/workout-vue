@@ -35,7 +35,7 @@ export default {
     firebase.auth().onAuthStateChanged(user =>{
       if(user){
         this.setLoginUser(user)
-        this.fetchTraining()
+        // this.fetchTraining()
         if(this.$router.currentRoute.name === 'Login'){this.$router.push({name: 'Home'},()=>{})}
       }else{
         this.deleteLoginUser()

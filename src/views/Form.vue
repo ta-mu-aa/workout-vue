@@ -46,7 +46,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-btn small color="info" :to="{name: 'Home'}">cancel</v-btn>
+      <v-btn small color="info" :to="{name: 'Home'}" v-on:click.stop="reset">cancel</v-btn>
       <v-btn color="info" class="ml-2" v-on:click.stop="submit">保存</v-btn>
     </v-container>
   </v-form>
@@ -58,13 +58,15 @@ import {mapActions} from 'vuex'
     name: 'Form',
     created(){
       if(!this.$route.params.training_id) return
-
+    
       const training = this.$store.getters.getTrainingId(this.$route.params.training_id)
       if(training){
+        
         this.menu = training
       }else{
         this.$router.push({name: ('Home')})
       }
+      
     },
     data(){
       return{
@@ -81,6 +83,10 @@ import {mapActions} from 'vuex'
         console.log(this.menu)
         this.$router.push({ name: 'Home'})
         this.training = {}
+      },
+      reset(){
+        this.training = {}
+        console.log('ddddd')
       },
       ...mapActions(['addTrainingMenu','updateTraining','setDay'])
     }

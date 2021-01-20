@@ -3,6 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12 mt-3 justify-center>
         <span>{{$store.state.trainingDay}}</span>
+       
         <v-data-table
             :headers="headers"
             :items="training" 
@@ -29,6 +30,7 @@ export default {
   created(){
     this.training = this.$store.state.trainingMenu
   },
+ 
   data () {
     return {
       headers: [
@@ -40,9 +42,8 @@ export default {
         { text: '種目', value: 'menu' , sortable:false},
         { text: '回数', value: 'reps' , sortable:false},
         { text: '重量 (kg)', value: 'weight' , sortable:false},
-        { text: 'セット数 ', value: 'sets', sortable:false },
+        { text: 'セット数', value: 'sets', sortable:false },
         { text: '編集' , value:'action', sortable:false },
-
       ],
       training: [],
     }
