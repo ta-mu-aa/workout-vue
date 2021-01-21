@@ -13,7 +13,8 @@
 
         <v-divider></v-divider>
 
-        <v-list-item v-for="(item, index) in items" :key="index" :to="item.link" >
+        <v-list-item v-for="(item, index) in items" :key="index" :to="item.link" 
+        v-on:click="actionClick(item.action)">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -28,20 +29,29 @@
 
 <script>
 import {mapGetters} from 'vuex'
-// import {mapActions} from 'vuex'
+import {mapActions} from 'vuex'
   export default {
     data () {
       return {
         items: [
           { title: 'ホーム', icon: 'mdi-menu', link:{name:'Home'} },
-          { title: 'ログアウト', icon: 'mdi-menu'  }
+          { title: 'ログアウト', icon: 'mdi-menu' ,action:'logout' }
 
         ],
       }
+    },
+    methods:{
+      actionClick(action){
+        if(action === 'logout'){
+          this.logout()
+        }
+          
+        
       },
+      ...mapActions(['logout'])
+    },
     computed:{
       ...mapGetters(['userName','photoURL']),
-      // ...mapActions(['logout'])
     }
   }
 </script>
