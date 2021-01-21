@@ -71,6 +71,7 @@ import {mapActions} from 'vuex'
     data(){
       return{
         menu:{date:this.$store.state.trainingDay},
+        // menu:{}
       }
     },
     methods:{
@@ -78,6 +79,7 @@ import {mapActions} from 'vuex'
         if(this.$route.params.training_id){
           this.updateTraining({id: this.$route.params.training_id, menu: this.menu})
         }else{
+
           this.addTrainingMenu(this.menu)
         }
         console.log(this.menu)

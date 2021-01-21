@@ -26,7 +26,6 @@ export default new Vuex.Store({
     },
     addTrainingMenu(state,{id,menu}){
       menu.id = id
-
       state.trainingMenu.push(menu)    
     },
     updateTraining(state, {id , menu}){
@@ -42,14 +41,19 @@ export default new Vuex.Store({
     setDay(state,picker){
       state.trainingDay = picker
     },
+    resetMenu(state,{date}){
+      const index = state.trainingMenu.filter(menu => menu.date === date )
+      console.log(index)
+      state.trainingMenu.splice(index)
+    }
   },
 
   actions: {
     setLoginUser({commit}, user){
       commit('setLoginUser',user)
     },
-    fetchTraining({getters, commit},trainingDay){
-      firebase.firestore().collection(`users/${getters.uid}/training`).where('date','==',trainingDay ).get().then(snapshot => {
+    fetchTraining({getters, commit},date){
+      firebase.firestore().collection(`users/${getters.uid}/training`).where("date","==",date).get().then(snapshot => {
         snapshot.forEach(doc => commit('addTrainingMenu', {id: doc.id, menu:doc.data()}))
       })
     },
@@ -68,7 +72,7 @@ export default new Vuex.Store({
     },
     addTrainingMenu({getters,commit}, menu){
       if(getters.uid){ firebase.firestore().collection(`users/${getters.uid}/training`).add(menu).then(doc => {
-        commit('addTrainingMenu', {id: doc.id, menu })
+        commit('addTrainingMenu', {id: doc.id, menu})
       })
     }
     },
@@ -89,6 +93,9 @@ export default new Vuex.Store({
     setDay({commit},TrainingDay){
       commit('setDay',TrainingDay)
     },
+    resetMenu({commit},date){
+      commit('resetMenu',date)
+    }
   },
 
   getters:{

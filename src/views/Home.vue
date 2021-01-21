@@ -5,6 +5,7 @@
           <v-row>
             <v-date-picker
               width="400"
+              
               elevation="3"
               v-model="picker"
               locale="jp-ja"
@@ -15,7 +16,7 @@
           </v-row>
         </v-app>
       </v-container>
-       <router-link :to="{name:'Form' ,  }" ><span v-on:click="addmenu()">メニューを追加</span></router-link>
+       <router-link :to="{name:'Form'}"><span v-on:click="addmenu">メニューを追加</span></router-link>
     <Record/>
   </div>
 </template>
@@ -31,14 +32,16 @@ export default {
   data(){
     return{
       picker: new Date().toISOString().substr(0, 10),
+      
     }
   },
   methods:{
     addmenu(){
       this.setDay(this.picker)
+      this.resetMenu(this.picker)
       this.fetchTraining(this.picker)
     },
-    ...mapActions(['setDay','fetchTraining']),
+    ...mapActions(['setDay','fetchTraining','resetMenu']),
   },
 }
 </script>
