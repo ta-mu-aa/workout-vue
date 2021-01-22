@@ -57,6 +57,7 @@ export default new Vuex.Store({
         snapshot.forEach(doc => commit('addTrainingMenu', {id: doc.id, menu:doc.data()}))
       })
     },
+ 
     login () {
       const google_auth_provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithRedirect(google_auth_provider)

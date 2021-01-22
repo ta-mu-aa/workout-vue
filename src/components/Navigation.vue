@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-navigation-drawer v-model="$store.state.drawer" absolute temporary width="250">
+    <v-navigation-drawer v-model="$store.state.drawer" fixed temporary width="250">
       <v-list>
         <v-list-item>
           <v-list-item-avatar>
@@ -35,6 +35,7 @@ import {mapActions} from 'vuex'
       return {
         items: [
           { title: 'ホーム', icon: 'mdi-menu', link:{name:'Home'} },
+          { title: 'coming...', icon: 'mdi-menu', },
           { title: 'ログアウト', icon: 'mdi-menu' ,action:'logout' }
 
         ],

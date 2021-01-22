@@ -1,9 +1,9 @@
 <template>
-<v-container text-center justify-center>
-  <v-layout row wrap>
+<v-container text-center justify-center >
+  <v-layout row wrap  align-content="center">
     <v-flex xs12>
-      <h1>My workout</h1>
-      <p>Myworkoutをご利用の方は、Googleアカウントでログインしてください。</p>
+      <h1>My-WORKOUT</h1>
+      <p>ご利用の方は、Googleアカウントでログインしてください。</p>
     </v-flex>
 
     <v-flex xs12 mt-5>

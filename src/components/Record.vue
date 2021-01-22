@@ -2,8 +2,7 @@
   <v-container>      
     <v-layout row wrap>
       <v-flex xs12 mt-3 justify-center>
-        <span>{{$store.state.trainingDay}}</span>
-       
+        <v-divider></v-divider>
         <v-data-table
             :headers="headers"
             :items="training" 
