@@ -11,7 +11,7 @@
                 md="3"
               >
                 <v-text-field
-                :rules="nameRules"
+               
                   label="menu"
                   required
                   v-model="menu.menu"
@@ -52,7 +52,7 @@
             </v-row>
             <v-row class="float-right">
               <v-btn small color="info" class="ml-2" v-on:click.stop="submit">add</v-btn>
-              <v-btn small  class="ml-2" :to="{name: 'Home'}" v-on:click.stop="reset">cancel</v-btn>
+              <v-btn small  class="ml-2" :to="{name: 'Home'}" >cancel</v-btn>
             </v-row>
           </v-container>
         </v-form>
@@ -75,12 +75,11 @@ import {mapActions} from 'vuex'
       }else{
         this.$router.push({name: ('Home')})
       }
-      
     },
     data(){
       return{
         menu:{date:this.$store.state.trainingDay},
-        // menu:{}
+        
       }
     },
     methods:{
@@ -88,16 +87,10 @@ import {mapActions} from 'vuex'
         if(this.$route.params.training_id){
           this.updateTraining({id: this.$route.params.training_id, menu: this.menu})
         }else{
-
           this.addTrainingMenu(this.menu)
         }
-        console.log(this.menu)
         this.$router.push({ name: 'Home'})
         this.training = {}
-      },
-      reset(){
-        this.training = {}
-        console.log('ddddd')
       },
       ...mapActions(['addTrainingMenu','updateTraining','setDay'])
     }

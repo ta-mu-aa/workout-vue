@@ -12,6 +12,7 @@ export default new Vuex.Store({
     login_user:null,
     trainingMenu:[],
     trainingDay:null,
+    doneDate:[]
   },
 
   mutations: {
@@ -43,8 +44,11 @@ export default new Vuex.Store({
     },
     resetMenu(state,{date}){
       const index = state.trainingMenu.filter(menu => menu.date === date )
-      console.log(index)
       state.trainingMenu.splice(index)
+    },
+    doneDate(state,menu){
+      const json = JSON.parse(JSON.stringify(menu))
+      state.doneDate.push(json.menu.date)
     }
   },
 
@@ -53,12 +57,20 @@ export default new Vuex.Store({
       commit('setLoginUser',user)
     },
     fetchTraining({getters, commit},date){
-      firebase.firestore().collection(`users/${getters.uid}/training`).where("date","==",date).get().then(snapshot => {
-        snapshot.forEach(doc => commit('addTrainingMenu', {id: doc.id, menu:doc.data()}))
+      firebase.firestore().collection(`users/${getters.uid}/training`).where("date","==",date).get()
+      .then(snapshot => {snapshot.forEach(doc => commit('addTrainingMenu', {id: doc.id, menu:doc.data()}))
       })
     },
- 
-    login () {
+    fetchTrainingDate({getters,commit}){
+      firebase.firestore().collection(`users/${getters.uid}/training`).get()
+      .then(snapshot => {snapshot.forEach(doc => commit('doneDate', { menu:doc.data()}))
+      })
+    .catch(function(error) {
+      console.log("Error getting documents",error)
+    })
+    },
+
+    login(){
       const google_auth_provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithRedirect(google_auth_provider)
     },
@@ -96,7 +108,8 @@ export default new Vuex.Store({
     },
     resetMenu({commit},date){
       commit('resetMenu',date)
-    }
+    },
+
   },
 
   getters:{
@@ -104,6 +117,5 @@ export default new Vuex.Store({
     photoURL:state => state.login_user ? state.login_user.photoURL:'',
     uid: state => state.login_user ? state.login_user.uid : null,
     getTrainingId: state => id => state.trainingMenu.find(menu => menu.id === id),
-    // getTrainingDay: state  => state.trainingMenu.filter(menu => menu.date === state.trainingDay)
   }
 })

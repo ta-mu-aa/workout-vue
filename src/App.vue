@@ -11,7 +11,7 @@
     </v-app-bar>
     <Navigation/>
     <v-main>
-      <v-container d-md-flex justify-center >
+      <v-container d-md-flex justify-center>
         <router-view/>
       </v-container>
     </v-main>
@@ -33,6 +33,7 @@ export default {
         this.setLoginUser(user)
         const today = new Date().toISOString().substr(0, 10)
         this.fetchTraining(today)
+        this.fetchTrainingDate()
         if(this.$router.currentRoute.name === 'Login'){this.$router.push({name: 'Home'},()=>{})}
       }else{
         this.deleteLoginUser()
@@ -45,7 +46,7 @@ export default {
     }
   },
   methods:{
-    ...mapActions(['toggleSideMenu','setLoginUser','logout','deleteLoginUser','fetchTraining']),
+    ...mapActions(['toggleSideMenu','setLoginUser','logout','deleteLoginUser','fetchTraining','fetchTrainingDate']),
   }
 }
 </script>
