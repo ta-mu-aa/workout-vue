@@ -11,7 +11,7 @@
     </v-app-bar>
     <Navigation/>
     <v-main>
-      <v-container d-md-flex justify-center>
+      <v-container>
         <router-view/>
       </v-container>
     </v-main>

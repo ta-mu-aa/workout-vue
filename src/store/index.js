@@ -69,7 +69,6 @@ export default new Vuex.Store({
       console.log("Error getting documents",error)
     })
     },
-
     login(){
       const google_auth_provider = new firebase.auth.GoogleAuthProvider()
       firebase.auth().signInWithRedirect(google_auth_provider)

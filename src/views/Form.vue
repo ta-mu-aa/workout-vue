@@ -69,7 +69,6 @@ import {mapActions} from 'vuex'
     
       const training = this.$store.getters.getTrainingId(this.$route.params.training_id)
       if(training){
-        
         this.menu = training
       }else{
         this.$router.push({name: ('Home')})
@@ -78,7 +77,6 @@ import {mapActions} from 'vuex'
     data(){
       return{
         menu:{date:this.$store.state.trainingDay},
-        
       }
     },
     methods:{
