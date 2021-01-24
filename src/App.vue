@@ -35,6 +35,7 @@ export default {
         this.fetchTraining(today)
         this.fetchTrainingDate()
         if(this.$router.currentRoute.name === 'Login'){this.$router.push({name: 'Home'},()=>{})}
+        if(this.$router.currentRoute.name === 'signIn'){this.$router.push({name: 'Home'},()=>{})}
       }else{
         this.deleteLoginUser()
         this.$router.push({name:'Login'},()=>{})

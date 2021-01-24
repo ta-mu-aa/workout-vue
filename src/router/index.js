@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Form from '../views/Form.vue'
 import Login from '../views/Login.vue'
+import signIn from '../views/signIn.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,6 +22,11 @@ const routes = [
     name:'Login',
     component:Login
   },
+  {
+    path:'/signIn',
+    name:'signIn',
+    component:signIn
+  }
 ]
 
 const router = new VueRouter({
