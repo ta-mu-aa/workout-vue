@@ -34,9 +34,9 @@ import {mapActions} from 'vuex'
     data () {
       return {
         items: [
-          { title: 'ホーム', icon: 'mdi-menu', link:{name:'Home'} },
-          { title: 'coming...', icon: 'mdi-menu', },
-          { title: 'ログアウト', icon: 'mdi-menu' ,action:'logout' }
+          { title: 'ホーム', icon: 'mdi-home', link:{name:'Home'} },
+          { title: 'coming...', icon: 'fas fa-list', },
+          { title: 'ログアウト', icon: 'mdi-arrow-left' ,action:'logout' }
 
         ],
       }

@@ -11,8 +11,7 @@
                 md="3"
               >
                 <v-text-field
-               
-                  label="menu"
+                  label="種目"
                   required
                   v-model="menu.menu"
                 ></v-text-field>
@@ -23,7 +22,7 @@
                 md="3"
               >
                 <v-text-field
-                  label="weight"
+                  label="重量"
                   required
                   v-model="menu.weight"
                 ></v-text-field>
@@ -34,7 +33,7 @@
                 md="3"
               >
                 <v-text-field
-                  label="rep"
+                  label="回数"
                   required
                   v-model="menu.reps"
                 ></v-text-field>
@@ -44,7 +43,7 @@
                 md="3"
               >
                 <v-text-field
-                  label="sets"
+                  label="セット数"
                   required
                   v-model="menu.sets"
                 ></v-text-field>
